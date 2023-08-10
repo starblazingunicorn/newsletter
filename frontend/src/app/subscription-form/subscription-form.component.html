@@ -2,28 +2,91 @@
   <div class="newsletter-content-container">
     <div class="newsletter-content-description">
       <h3 class="newsletter-content-title">Revolut Blog!</h3>
-   <form action=""></form>
+      <p>
+        Get insights and updates on our newest on efficient payments, and
+        upcoming features by email. You can unsubscribe at any time. Join our
+        community, you’ll love it.
+      </p>
     </div>
 
     <div class="newsletter-forms">
-        
-      <label for="name">Name</label>
-      <input class="input is-medium" type="text" placeholder="Your name" />
+      <div [hidden]="submitted && newsletterForm.valid">
+        <form
+          [formGroup]="newsletterForm"
+          class="newsletter-form"
+          id="newsletterForm"
+          (ngSubmit)="submitNewsletterForm()"
+        >
+          <label for="name" class="pb-2"
+            >Name
+            <input
+              class="input"
+              type="text"
+              id="name"
+              placeholder="Your name"
+              formControlName="name"
+              [class.is-danger]="getValidation('name') === 'error'"
+              [class.is-success]="getValidation('name') === 'success'"
+            />
 
-      <br />
-      <br />
-      <label for="Email">Email</label>
-      <input class="input is-medium" type="text" placeholder="Your Email" />
-      <br />
-      <br />
-      <button class="button is-rounded">Subscribe</button>
+            <p class="help is-danger" *ngIf="getValidation('name') === 'error'">
+              {{ formErrorMessage["name"].errorMessage }}
+            </p>
+            <div
+              class="help is-success"
+              *ngIf="getValidation('name') === 'success'"
+            >
+              {{ formErrorMessage["name"].successMessage }}
+            </div>
+          </label>
+          <label for="Email" class="pb-2"
+            >Email
+            <input
+              class="input"
+              type="email"
+              id="email"
+              placeholder="Your Email"
+              formControlName="email"
+              [class.is-danger]="getValidation('email') === 'error'"
+              [class.is-success]="getValidation('email') === 'success'"
+              c
+            />
+            <p
+              class="help is-danger"
+              *ngIf="getValidation('email') === 'error'"
+            >
+              {{ formErrorMessage["email"].errorMessage }}
+            </p>
+            <p
+              class="help is-success"
+              *ngIf="getValidation('email') === 'success'"
+            >
+              {{ formErrorMessage["email"].successMessage }}
+            </p>
+          </label>
+          <div class="submitButton">
+            <button class="button is-small is-rounded" type="submit">
+              Subscribe
+            </button>
+          </div>
+        </form>
+      </div>
+      <div *ngIf="submitted && newsletterForm.valid" class="thank-you">
+        Thank you for your submission!
+      </div>
     </div>
   </div>
   <div class="newsletter-image-wrapper">
-    <img
+    <!-- <img
       class="newsletter-image"
       src="./../assets/UK Press kits5.png"
       alt="revolut card"
-    />
+    /> -->
   </div>
+</div>
+
+<div *ngIf="submittedData">
+  <h4>Submitted Information:</h4>
+  <p><strong>Name:</strong> {{ submittedData.name }}</p>
+  <p><strong>Email:</strong> {{ submittedData.email }}</p>
 </div>
