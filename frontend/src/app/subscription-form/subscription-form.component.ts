@@ -25,21 +25,7 @@ export class SubscriptionFormComponent implements OnInit {
 
   submitted = false;
 
-  formErrorList: FormErrorListItem[] = [];
-
   showThankYouMessage = false;
-
-  formErrorMessage: Record<string, newsletterFormMessage> = {
-    name: {
-      errorMessage: 'Name is required.',
-      successMessage: 'Valid name',
-    },
-
-    email: {
-      errorMessage: 'email is required.',
-      successMessage: 'Valid email!',
-    },
-  };
 
   ngOnInit() {
     this.newsletterForm = this.formBuilder.group({
@@ -51,7 +37,6 @@ export class SubscriptionFormComponent implements OnInit {
         ),
       ]),
     });
-    this.validateForm();
   }
 
   submitNewsletterForm() {
@@ -59,21 +44,9 @@ export class SubscriptionFormComponent implements OnInit {
     this.showThankYouMessage = true;
   }
 
-  validateForm() {
-    this.formErrorList = [];
-    for (const [key] of Object.entries(this.newsletterForm.controls)) {
-      if (this.newsletterForm.controls[key].invalid) {
-        this.formErrorList.push({
-          id: key,
-          message: this.formErrorMessage[key].errorMessage,
-        });
-      }
-    }
-  }
-
   getValidation(controlName: string | number) {
     const control = this.newsletterForm.get(controlName.toString());
-    if (control && (control.touched )) {
+    if (control && control.touched) {
       return control.invalid ? 'error' : 'success';
     }
     return 'neutral';

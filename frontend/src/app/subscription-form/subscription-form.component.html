@@ -27,14 +27,21 @@
             [class.is-danger]="getValidation('name') === 'error'"
             [class.is-success]="getValidation('name') === 'success'"
           />
-          <p class="help is-danger" *ngIf="getValidation('name') === 'error'">
-            {{ formErrorMessage["name"].errorMessage }}
-          </p>
+
           <div
-            class="help is-success"
-            *ngIf="getValidation('name') === 'success'"
+            *ngIf="
+              newsletterForm.get('name')?.invalid &&
+              newsletterForm.get('name')?.touched
+            "
           >
-            {{ formErrorMessage["name"].successMessage }}
+            <div class="message is-danger is-small">
+              <p class="message-body">name is required.</p>
+            </div>
+          </div>
+          <div *ngIf="newsletterForm.get('name')?.valid">
+            <div class="message is-success is-small">
+              <p class="message-body">name is correct.</p>
+            </div>
           </div>
 
           <label for="Email" class="pb-2">Email </label>
@@ -45,15 +52,22 @@
             placeholder="Your Email"
             formControlName="email"
           />
-          <p class="help is-danger" *ngIf="getValidation('email') === 'error'">
-            {{ formErrorMessage["email"].errorMessage }}
-          </p>
-          <p
-            class="help is-success"
-            *ngIf="getValidation('email') === 'success'"
+
+          <div
+            *ngIf="
+              newsletterForm.get('email')?.invalid &&
+              newsletterForm.get('email')?.touched
+            "
           >
-            {{ formErrorMessage["email"].successMessage }}
-          </p>
+            <div class="message is-danger is-small">
+              <p class="message-body">Email is required.</p>
+            </div>
+          </div>
+          <div *ngIf="newsletterForm.get('email')?.valid">
+            <div class="message is-success is-small">
+              <p class="message-body">Email is correct.</p>
+            </div>
+          </div>
 
           <div class="submitButton">
             <button

@@ -4,11 +4,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SubscriptionFormComponent } from './subscription-form/subscription-form.component';
+import { UserFormsComponent } from './user-forms/user-forms.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SubscriptionFormComponent
+    SubscriptionFormComponent,
+    UserFormsComponent
   ],
   imports: [
     BrowserModule,

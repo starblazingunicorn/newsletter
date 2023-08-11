@@ -1,0 +1,56 @@
+<div [hidden]="submit === true">
+  <form [formGroup]="subForms" (ngSubmit)="save()">
+    <label for="name">Username</label><br />
+    <input type="text" class="input" formControlName="name" /><br />
+    <br />
+    <div *ngIf="subForms.get('name')?.invalid && subForms.get('name')?.touched">
+      <div class="message is-danger">
+        <p class="message-body">name is required.</p>
+      </div>
+    </div>
+    <div *ngIf="subForms.get('name')?.valid">
+      <div class="message is-success">
+        <p class="message-body">name is correct.</p>
+      </div>
+    </div>
+    <br />
+    <label for="email">Email</label><br />
+    <input type="email" class="input" formControlName="email" /><br />
+    <br />
+    <div
+      *ngIf="subForms.get('email')?.invalid && subForms.get('email')?.touched"
+    >
+      <div class="message is-danger">
+        <p class="message-body">Email is required.</p>
+      </div>
+    </div>
+    <div *ngIf="subForms.get('email')?.valid">
+      <div class="message is-success">
+        <p class="message-body">Email is correct.</p>
+      </div>
+    </div>
+    <br />
+    <button class="button is-info" type="submit" [disabled]="subForms.invalid">
+      Save
+    </button>
+    <br /><br />
+    <button
+      class="button is-info is-light"
+      type="button"
+      (click)="populateTestData()"
+    >
+      Test Data
+    </button>
+  </form>
+</div>
+<div *ngIf="subForms.valid && submit" class="thank-you message is-success">
+  <div class="message-body">Thank you for your submission!</div>
+</div>
+
+<br />
+<div>
+  <pre> dirty : {{ subForms.dirty }}</pre>
+  <pre>touched: {{ subForms.touched }}</pre>
+  <pre>Valid: {{ subForms.valid }}</pre>
+  <pre> Forms value: {{ subForms.value | json }}</pre>
+</div>
