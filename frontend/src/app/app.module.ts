@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SubscriptionFormComponent } from './subscription-form/subscription-form.component';
 import { UserFormsComponent } from './user-forms/user-forms.component';
+import { FormsMockComponent } from './forms-mock/forms-mock.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SubscriptionFormComponent,
-    UserFormsComponent
+    UserFormsComponent,
+    FormsMockComponent
   ],
   imports: [
     BrowserModule,

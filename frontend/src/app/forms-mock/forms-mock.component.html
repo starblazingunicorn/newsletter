@@ -1,0 +1,11 @@
+<form [formGroup]="myForms" (ngSubmit)="save()">
+  <label for="name">Name</label>
+  <input type="text" formControlName="name" class="input" />
+  <br>
+  <div *ngIf="myForms.get('name')?.invalid && myForms.get('name')?.touched">
+    <div class="message is-danger">
+      <p class="message-body">{{ validationMessages['name']}}</p>
+    </div>
+  </div>
+  <button type="submit" class="button is-info">save</button>
+</form>
