@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 interface newsletterFormMessage {
   errorMessage: string;
-  successMessage?: string;
+  successMessage: string;
 }
 interface FormErrorListItem {
   id: string;
@@ -21,23 +21,21 @@ interface FormErrorListItem {
 export class SubscriptionFormComponent implements OnInit {
   newsletterForm: FormGroup = new FormGroup({});
 
-  submittedData: any = null;
-
-  formErrorList: FormErrorListItem[] = [];
-
   constructor(private formBuilder: FormBuilder) {}
 
   submitted = false;
 
+  formErrorList: FormErrorListItem[] = [];
+
   showThankYouMessage = false;
 
   formErrorMessage: Record<string, newsletterFormMessage> = {
-    name: <newsletterFormMessage>{
+    name: {
       errorMessage: 'Name is required.',
       successMessage: 'Valid name',
     },
 
-    email: <newsletterFormMessage>{
+    email: {
       errorMessage: 'email is required.',
       successMessage: 'Valid email!',
     },
@@ -57,25 +55,12 @@ export class SubscriptionFormComponent implements OnInit {
   }
 
   submitNewsletterForm() {
-
     this.submitted = true;
-    // this.newsletterForm.reset();
     this.showThankYouMessage = true;
-  
-    setTimeout(() => {
-      this.showThankYouMessage = false;
-    }, 5000); 
-    this.validateForm;
   }
-   
-  
-
-  
 
   validateForm() {
     this.formErrorList = [];
-  
-
     for (const [key] of Object.entries(this.newsletterForm.controls)) {
       if (this.newsletterForm.controls[key].invalid) {
         this.formErrorList.push({
@@ -87,13 +72,10 @@ export class SubscriptionFormComponent implements OnInit {
   }
 
   getValidation(controlName: string | number) {
-    if (this.submitted) {
-      return this.newsletterForm.controls[controlName].invalid
-        ? 'error'
-        : 'success';
+    const control = this.newsletterForm.get(controlName.toString());
+    if (control && (control.touched )) {
+      return control.invalid ? 'error' : 'success';
     }
     return 'neutral';
   }
-
-
 }

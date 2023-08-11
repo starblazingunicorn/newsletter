@@ -34,13 +34,15 @@
     padding-bottom: 24px;
     color: #363636;
   }
+  &-content-wrapper {
+    padding-left: 40px;
+  }
   &-content-description {
-    // padding-left: 0;
     padding-bottom: 16px;
     flex: 1;
     padding-right: 40px;
-    padding-left: 40px;
-    padding-top: 40px;
+
+    padding-top: 16px;
     color: #a0a6ad;
   }
   &-forms {
@@ -100,35 +102,39 @@
     // height: unset;
     //  object-fit: scale-down;
   }
-  @media only screen and (min-width: 768px) {
+  @media only screen and (max-width: 869px) {
     &-content-container {
       flex: 2;
       padding-right: 24px;
     }
-    &-content-description {
-      // padding-left: 0;
+    &-content-wrapper {
     
+
       padding-right: 0px;
-       
+    }
+    &-content-title {
+      padding-bottom: 16px;
+      padding-top: 24px;
     }
     &-image-wrapper {
-      flex: 3;
+      flex: 4;
     }
   }
-  @media only screen and (max-width: 425px){
-    &-card-container{
+  @media only screen and (max-width: 790px) {
+    &-card-container {
       display: flex;
-       
+
       height: 746px;
-    flex-direction: column-reverse;;
-    min-height: 300px;
-    overflow: hidden;
-    margin: 0 20px 40px;
-    background: #fff 50%;
-    background-size: cover;
-    border-radius: 0.25rem;
-    box-shadow: 0 0 0.25rem rgba(0,0,0,.08), 0 0.5rem 0.75rem rgba(0,0,0,.14);
-    transition: all .2s ease;
+      flex-direction: column-reverse;
+      min-height: 300px;
+      overflow: hidden;
+      margin: 0 20px 40px;
+      background: #fff 50%;
+      background-size: cover;
+      border-radius: 0.25rem;
+      box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.08),
+        0 0.5rem 0.75rem rgba(0, 0, 0, 0.14);
+      transition: all 0.2s ease;
     }
     &-content-container {
       flex: 2;
